@@ -75,18 +75,18 @@ router.post('/deleteEvent/', function(req, res, next) {
     });
 });
 
-function getEvents() {
-    monogClient.connect(db_url, function(err, db) {
-        return db.collection('events').find();
-    });
-}
-
 router.get('/allEvents/', function(req, res, next) {
     var listOfEvent = [];
-    var p;
-    getEvents().then(function(cursor) {
-        cursor.forEach(function(d) {
-            console.log(d);
+    var promises = [];
+    monogClient.connect(db_url, function(err, db) {
+        var cursor = db.collection('events').find();
+        cursor.each(function(err, doc) {
+            if (doc != null) {
+                listOfEvent.push(doc);
+            }
+            else {
+                res.json(listOfEvent);
+            }
         });
     });
 });
