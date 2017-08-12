@@ -6,8 +6,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    // res.render('index', { title: 'Express' });
-    res.send("Hi Hello");
+    res.render('index')
 });
 
 var insertNewEventDetails = function(db, newEvent, callBack) {
@@ -83,8 +82,7 @@ router.get('/allEvents/', function(req, res, next) {
         cursor.each(function(err, doc) {
             if (doc != null) {
                 listOfEvent.push(doc);
-            }
-            else {
+            } else {
                 res.json(listOfEvent);
             }
         });

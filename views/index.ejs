@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <script>
+    var app = angular.module("myApp", []);
+    app.controller("myController", function($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/allEvents"
+        }).then(function(data) {
+            $scope.events = data.data;
+        });
+    });
+  </script>
+  <body ng-app="myApp" ng-controller="myController">
+    <div style="text-align: center; padding-top: 20px;">
+        <div>
+            <button class="create">Create Event</button>
+            <button class="delete">Delete Event</button>
+            <button class="update">Update Event</button>
+        </div>
+    </div>
+    <p ng-repeat="event in events">
+        <span ng-bind="event.name">/span>
+    </p>
   </body>
 </html>

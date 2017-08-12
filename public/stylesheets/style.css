@@ -1,8 +1,33 @@
-body {
+/*body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}*/
+
+body {
+    background: #88aae2;
+}
+
+button.create {
+    color: white;
+    background-color: #20c9aa;
+    padding: 15px 32px;
+    text-align: center;
+}
+
+button.delete {
+    background-color: #20c9aa;
+    padding: 15px 32px;
+    color: white;
+    text-align: center;
+}
+
+button.update {
+    background-color: #20c9aa;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
 }
